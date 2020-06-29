@@ -1,3 +1,3 @@
 # TruckMemo
 
-Memotest with truck images for my son
+Memotest with truck images for little kids
