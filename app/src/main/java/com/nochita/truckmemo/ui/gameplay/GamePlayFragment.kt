@@ -61,6 +61,8 @@ class GamePlayFragment : Fragment(), GamePlayAdapter.OnCardClicked {
                     putInt(ARG_COLUMNS, columns)
                 }
             }
+
+        private const val TAG = "memo"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -94,7 +96,7 @@ class GamePlayFragment : Fragment(), GamePlayAdapter.OnCardClicked {
 
     fun loadCards() = CoroutineScope(Main).launch {
         shimmerViewContainer.startShimmer()
-        Log.d("Memo", "Getting ${rows * columns / 2} cards")
+        Log.d(TAG, "Getting ${rows * columns / 2} cards")
         val result = withContext(IO) { // background thread
             viewModel.getNeededCards(rows * columns / 2)
         }
@@ -110,13 +112,13 @@ class GamePlayFragment : Fragment(), GamePlayAdapter.OnCardClicked {
             override fun onAnimationStart(animation: Animator) {
                 animation_container.isVisible = true
                 view_disable_layout.isVisible = true //this is to disable clicking on the recycle view
-                Log.d("test" , "start animation")
+                Log.d(TAG , "start animation")
             }
 
             override fun onAnimationEnd(animation: Animator) {
                 animation_container.isVisible = false
                 view_disable_layout.isVisible = false
-                Log.d("test" , "finish animation")
+                Log.d(TAG , "finish animation")
                 continueAfterAnimation()
             }
 

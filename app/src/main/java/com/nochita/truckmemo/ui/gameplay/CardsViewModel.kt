@@ -1,12 +1,9 @@
 package com.nochita.truckmemo.ui.gameplay
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
-import androidx.lifecycle.viewModelScope
 import com.nochita.truckmemo.data.CardRepository
 import com.nochita.truckmemo.model.Card
-import kotlinx.coroutines.launch
 
 class CardsViewModel : ViewModel(){
 

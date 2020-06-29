@@ -23,7 +23,7 @@ class CardViewHolder  (view: View) : RecyclerView.ViewHolder(view) {
 
     internal fun bindTo(card: Card, listener: GamePlayAdapter.OnCardClicked, position: Int ) = with(itemView) {
         this.tag = position
-        card_container.setBackgroundResource(if (card.isFlipped) card.imageResId else R.drawable.back_card)
+        cardItem.setBackgroundResource(if (card.isFlipped) card.imageResId else R.drawable.back_card)
         if(card.isFlipped){
             card_container.setOnClickListener{ null }
         } else {
