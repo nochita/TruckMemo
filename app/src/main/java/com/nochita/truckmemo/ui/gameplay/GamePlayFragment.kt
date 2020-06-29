@@ -182,6 +182,7 @@ class GamePlayFragment : Fragment(), GamePlayAdapter.OnCardClicked {
 
     private fun showWinAnimation(){
         enableAnimation(true)
+        failed_animation.isVisible = false
         confetti_animation.playAnimation()
     }
 
