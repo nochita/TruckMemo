@@ -2,8 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/card_container"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+    android:layout_width="120dp"
+    android:layout_height="120dp"
     android:background="@drawable/back_card"
     android:layout_margin="24dp"
     tools:context=".ui.gameplay.GamePlayFragment">
@@ -11,7 +11,7 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/cardItem"
         android:padding="12dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 </LinearLayout>

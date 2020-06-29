@@ -32,10 +32,11 @@ class LobbyFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        grid3x4.setOnClickListener{ startGamePlay(3,4) }
-        grid5x2.setOnClickListener{ startGamePlay(5,2) }
-        grid4x4.setOnClickListener{ startGamePlay(4,4) }
-        grid4x5.setOnClickListener{ startGamePlay(4,5) }
+        grid1.setOnClickListener{ startGamePlay(2,3) }
+        grid2.setOnClickListener{ startGamePlay(2,4) }
+        grid3.setOnClickListener{ startGamePlay(2,5) }
+        grid4.setOnClickListener{ startGamePlay(3,4) }
+
     }
 
     private fun startGamePlay(rows: Int, columns: Int){

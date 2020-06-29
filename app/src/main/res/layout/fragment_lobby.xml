@@ -19,37 +19,37 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/grid3x4"
+        android:id="@+id/grid1"
         style="@style/lobby_button_grid"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="3x4"
+        android:text="2x3"
         android:layout_marginTop="64dp"
         app:layout_constraintTop_toBottomOf="@id/title"/>
 
 
     <Button
-        android:id="@+id/grid5x2"
+        android:id="@+id/grid2"
         style="@style/lobby_button_grid"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="5x2"
-        app:layout_constraintTop_toBottomOf="@id/grid3x4"/>
+        android:text="2x4"
+        app:layout_constraintTop_toBottomOf="@id/grid1"/>
 
     <Button
-        android:id="@+id/grid4x4"
+        android:id="@+id/grid3"
         style="@style/lobby_button_grid"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="4x4"
-        app:layout_constraintTop_toBottomOf="@id/grid5x2"/>
+        android:text="2x5"
+        app:layout_constraintTop_toBottomOf="@id/grid2"/>
 
     <Button
-        android:id="@+id/grid4x5"
+        android:id="@+id/grid4"
         style="@style/lobby_button_grid"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="4x5"
-        app:layout_constraintTop_toBottomOf="@id/grid4x4"/>
+        android:text="3x4"
+        app:layout_constraintTop_toBottomOf="@id/grid3"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

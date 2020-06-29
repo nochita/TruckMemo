@@ -9,12 +9,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.nochita.truckmemo.R
 import com.nochita.truckmemo.model.Card
 import kotlinx.android.synthetic.main.fragment_game_play.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers.IO
+import kotlinx.coroutines.Dispatchers.Main
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -73,18 +77,7 @@ class GamePlayFragment : Fragment(), GamePlayAdapter.OnCardClicked {
         return inflater.inflate(R.layout.fragment_game_play, container, false)
     }
 
-    private fun populateBoard(cards: List<Card>) {
-
-        cards.subList(0, rows * columns / 2)
-
-        val cardsNeeded = cards.toMutableList()
-        cardsNeeded.addAll(cards.map { original -> original.copyWithId(original.id + pairOfCardsToFinish) })
-
-            // mix cards
-        cardsNeeded.shuffle()
-
-        this.cards = cardsNeeded
-
+    private fun populateBoard(cards : List<Card>) {
         adapter = GamePlayAdapter(this, cards)
         recycleViewGamePlay.adapter = adapter
     }
@@ -99,13 +92,19 @@ class GamePlayFragment : Fragment(), GamePlayAdapter.OnCardClicked {
         prepareUI()
     }
 
+    fun loadCards() = CoroutineScope(Main).launch {
+        shimmerViewContainer.startShimmer()
+        Log.d("Memo", "Getting ${rows * columns / 2} cards")
+        val result = withContext(IO) { // background thread
+            viewModel.getNeededCards(rows * columns / 2)
+        }
+        populateBoard(result) // ui thread
+        shimmerViewContainer.hideShimmer()
+    }
+
     private fun prepareUI() {
         recycleViewGamePlay.layoutManager = GridLayoutManager(activity, columns)
-
-        viewModel.cards.observe(viewLifecycleOwner, Observer {
-            populateBoard(it)
-            pairOfCardsToFinish = it.size
-        })
+        loadCards()
 
         failed_animation.addAnimatorListener(object : Animator.AnimatorListener {
             override fun onAnimationStart(animation: Animator) {

@@ -9,10 +9,10 @@ class CardRepository {
 
     suspend fun getAllCards() : LiveData<List<Card>> {
             val cards = listOf(
-                Card(1, 2, R.drawable.car_1),
-                Card(2, 1,  R.drawable.truck_1),
-                Card(3, 3, R.drawable.firetruck),
-                Card(4, 4, R.drawable.car_2),
+                Card(1, 1, R.drawable.firetruck),
+                Card(2, 2, R.drawable.car_1),
+                Card(3, 3, R.drawable.car_2),
+                Card(4, 4,  R.drawable.truck_1),
                 Card(5, 5, R.drawable.truck_2),
                 Card(6, 6, R.drawable.truck_3),
                 Card(7, 7, R.drawable.tractor),

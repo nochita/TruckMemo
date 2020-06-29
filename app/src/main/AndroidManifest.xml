@@ -13,7 +13,7 @@
             using the viewmodel is easy to fix-->
         <activity android:name="com.nochita.truckmemo.ui.gameplay.GamePlayActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-            android:screenOrientation="portrait"
+            android:screenOrientation="landscape"
             android:windowSoftInputMode="stateHidden" />
         <activity android:name="com.nochita.truckmemo.ui.lobby.LobbyActivity">
             <intent-filter>
