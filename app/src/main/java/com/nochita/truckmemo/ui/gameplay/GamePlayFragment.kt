@@ -80,11 +80,13 @@ class GamePlayFragment : Fragment(), GamePlayAdapter.OnCardClicked {
     }
 
     private fun populateBoard(cards : List<Card>) {
+        pairOfCardsToFinish = cards.size / 2
         adapter = GamePlayAdapter(this, cards)
         recycleViewGamePlay.adapter = adapter
     }
 
     private fun showFailedAnimation() {
+        failed_animation.isVisible = true
         failed_animation.playAnimation()
     }
 
@@ -110,26 +112,25 @@ class GamePlayFragment : Fragment(), GamePlayAdapter.OnCardClicked {
 
         failed_animation.addAnimatorListener(object : Animator.AnimatorListener {
             override fun onAnimationStart(animation: Animator) {
-                animation_container.isVisible = true
-                view_disable_layout.isVisible = true //this is to disable clicking on the recycle view
+                enableAnimation(true)
                 Log.d(TAG , "start animation")
             }
 
             override fun onAnimationEnd(animation: Animator) {
-                animation_container.isVisible = false
-                view_disable_layout.isVisible = false
+                enableAnimation(false)
                 Log.d(TAG , "finish animation")
                 continueAfterAnimation()
             }
 
-            override fun onAnimationCancel(animation: Animator) {
-                // do nothing
-            }
+            override fun onAnimationCancel(animation: Animator) { }
 
-            override fun onAnimationRepeat(animation: Animator) {
-                // do nothing
-            }
+            override fun onAnimationRepeat(animation: Animator) { }
         })
+    }
+
+    private fun enableAnimation(isEnable : Boolean) {
+        animation_container.isVisible = isEnable
+        view_disable_layout.isVisible = isEnable //this is to disable clicking on the recycle view
     }
 
 
@@ -161,6 +162,7 @@ class GamePlayFragment : Fragment(), GamePlayAdapter.OnCardClicked {
     }
 
     private fun continueAfterAnimation() {
+        failed_animation.isVisible = false
         fipCard(shownCardPosition!!)
         shownCardPosition = null
 
@@ -171,11 +173,16 @@ class GamePlayFragment : Fragment(), GamePlayAdapter.OnCardClicked {
     private fun match() {
         pairOfCardsToFinish--
         if(pairOfCardsToFinish == 0) {
-            // notify the user that he or she won
+            showWinAnimation()
         }
 
         selectedCardPosition = null
         shownCardPosition = null
+    }
+
+    private fun showWinAnimation(){
+        enableAnimation(true)
+        confetti_animation.playAnimation()
     }
 
 }
