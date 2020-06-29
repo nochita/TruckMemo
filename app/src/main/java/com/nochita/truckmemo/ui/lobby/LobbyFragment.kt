@@ -35,7 +35,7 @@ class LobbyFragment : Fragment() {
         grid1.setOnClickListener{ startGamePlay(2,2) }
         grid2.setOnClickListener{ startGamePlay(2,3) }
         grid3.setOnClickListener{ startGamePlay(2,4) }
-        grid4.setOnClickListener{ startGamePlay(3,5) }
+        grid4.setOnClickListener{ startGamePlay(3,4) }
 
     }
 
