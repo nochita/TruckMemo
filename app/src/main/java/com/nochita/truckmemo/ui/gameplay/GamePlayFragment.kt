@@ -85,11 +85,6 @@ class GamePlayFragment : Fragment(), GamePlayAdapter.OnCardClicked {
         recycleViewGamePlay.adapter = adapter
     }
 
-    private fun showFailedAnimation() {
-        failed_animation.isVisible = true
-        failed_animation.playAnimation()
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -110,16 +105,14 @@ class GamePlayFragment : Fragment(), GamePlayAdapter.OnCardClicked {
         recycleViewGamePlay.layoutManager = GridLayoutManager(activity, columns)
         loadCards()
 
-        failed_animation.addAnimatorListener(object : Animator.AnimatorListener {
+        game_animation.addAnimatorListener(object : Animator.AnimatorListener {
             override fun onAnimationStart(animation: Animator) {
                 enableAnimation(true)
-                Log.d(TAG , "start animation")
             }
 
             override fun onAnimationEnd(animation: Animator) {
-                enableAnimation(false)
-                Log.d(TAG , "finish animation")
                 continueAfterAnimation()
+                enableAnimation(false)
             }
 
             override fun onAnimationCancel(animation: Animator) { }
@@ -130,9 +123,9 @@ class GamePlayFragment : Fragment(), GamePlayAdapter.OnCardClicked {
 
     private fun enableAnimation(isEnable : Boolean) {
         animation_container.isVisible = isEnable
+        game_animation.isVisible = isEnable
         view_disable_layout.isVisible = isEnable //this is to disable clicking on the recycle view
     }
-
 
     override fun onCardClicked(card: Card, position: Int) {
         if(shownCardPosition == null){
@@ -163,27 +156,46 @@ class GamePlayFragment : Fragment(), GamePlayAdapter.OnCardClicked {
     }
 
     private fun continueAfterAnimation() {
-        failed_animation.isVisible = false
-        fipCard(shownCardPosition!!)
-        shownCardPosition = null
+        game_animation.isVisible = false
+        if(!compareCards(shownCardPosition!!, selectedCardPosition!!)){
+            fipCard(shownCardPosition!!)
+            shownCardPosition = null
 
-        fipCard(selectedCardPosition!!)
-        selectedCardPosition = null
+            fipCard(selectedCardPosition!!)
+            selectedCardPosition = null
+        } else {
+            selectedCardPosition = null
+            shownCardPosition = null
+        }
     }
 
     private fun match() {
         pairOfCardsToFinish--
         if(pairOfCardsToFinish == 0) {
-            showWinAnimation()
+            showWinGameAnimation()
+        } else {
+            showMatchAnimation()
         }
-
-        selectedCardPosition = null
-        shownCardPosition = null
     }
 
-    private fun showWinAnimation(){
+    private fun showFailedAnimation() {
+        game_animation.setAnimation("no-match-animation.json")
+        showGameAnimation()
+    }
+
+    private fun showMatchAnimation() {
+        game_animation.setAnimation("winking-emoji.json")
+        showGameAnimation()
+    }
+
+    private fun showGameAnimation(){
         enableAnimation(true)
-        failed_animation.isVisible = false
+        game_animation.playAnimation()
+    }
+
+    private fun showWinGameAnimation(){
+        enableAnimation(true)
+        game_animation.isVisible = false
         confetti_animation.playAnimation()
     }
 
