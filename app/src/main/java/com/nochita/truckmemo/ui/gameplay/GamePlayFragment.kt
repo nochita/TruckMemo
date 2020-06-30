@@ -148,6 +148,7 @@ class GamePlayFragment : Fragment(), GamePlayAdapter.OnCardClicked {
                 showFailedAnimation()
             }
         }
+        adapter.notifyDataSetChanged()
     }
 
     private fun compareCards(position1 : Int, position2 : Int) : Boolean {
