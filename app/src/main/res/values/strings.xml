@@ -1,8 +1,9 @@
 <resources>
     <string name="app_name">Truck Memo Game</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="lobby_title">Memory Game</string>
-
-    <string name="game_play">Play Truck Memotest</string>
+    <string name="lobby_title">Truck Memory Game</string>
+    <string name="game_play">Play Truck Memo Game</string>
+    <string name="easy">Easy</string>
+    <string name="medium">Medium</string>
+    <string name="hard">Hard</string>
+    <string name="very_hard">Very Hard</string>
 </resources>
