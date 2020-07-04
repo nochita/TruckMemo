@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Memotest de camiones</string>
+    <string name="lobby_title">Memotest de camiones</string>
+    <string name="game_play">Jugar Memotest de camiones</string>
+    <string name="easy">Fácil</string>
+    <string name="medium">Medio</string>
+    <string name="hard">Difícil</string>
+    <string name="very_hard">Muy difícil</string>
+</resources>
