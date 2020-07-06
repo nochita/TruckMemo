@@ -92,7 +92,7 @@ class GamePlayFragment : Fragment(), GamePlayAdapter.OnCardClicked {
     }
 
     fun loadCards() = CoroutineScope(Main).launch {
-        shimmerViewContainer.startShimmer()
+        shimmerViewContainer?.startShimmer()
         Log.d(TAG, "Getting ${rows * columns / 2} cards")
         val result = withContext(IO) { // background thread
             viewModel.getNeededCards(rows * columns / 2)
